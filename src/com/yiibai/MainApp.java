@@ -2,6 +2,7 @@ package com.yiibai;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -243,8 +244,22 @@ public class MainApp {
 		}
 	}
 
+	static Logger log = Logger.getLogger(MainApp.class.getName());
+
+	/**
+	 * http://www.yiibai.com/spring/logging_with_log4j.html
+	 */
+	public static void useBeans18() {
+		ApplicationContext context = new ClassPathXmlApplicationContext(
+				"conf/Beans18.xml");
+		log.info("Going to create HelloWord Obj");
+		HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
+		obj.getMessage();
+		log.info("Exiting the program");
+	}
+
 	public static void main(String[] args) {
-		useBeans17();
+		useBeans18();
 		// unuseBeans2();
 	}
 }
